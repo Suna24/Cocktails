@@ -1,0 +1,149 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(-45deg,#ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    animation: gradient 15s ease infinite;
+    height: 100vh;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/** Barre de navigation **/
+
+#nav{
+    background-color: black;
+    width: 100%;
+    display: inline-grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 15em auto 15em;
+
+}
+
+nav p{
+    position: relative;
+    margin: auto;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+    /* border: darkorange solid 2px; */
+}
+
+/* Barre de progression */
+#progress {
+    background-image: linear-gradient(0.75turn, #00c7da, #e6007f);
+    height: 4px;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 1000;
+}
+
+/** Barre de recherche **/
+.search {
+    max-width: 35%;
+    min-width: 50%;
+    position: relative;
+    display: flex;
+    margin: auto;
+    margin-top: 25px;
+}
+
+.searchTerm {
+    width: 100%;
+    border: 3px solid #00B4CC;
+    border-radius: 5px 5px 5px 5px;
+    outline: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    color: #9DBFAF;
+    font-size: 15px;
+}
+
+.searchTerm:focus{
+    color: #00B4CC;
+}
+
+#searchIngredients {
+    padding: 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+/** Bas de page **/
+footer{
+    background-color: black;
+    padding-bottom: 20px;
+}
+
+footer p{
+    color: white;
+    margin: 0;
+    text-align: center;
+}
+
+.firstFooter{
+    padding-top: 20px;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.content {
+    min-height: calc(100vh - 70px);
+}
+
+
+.wrapper{
+    display:flex;
+}
+
+#myUL li{
+    display: inline;
+}
+
+#rainbowText {
+    background-image: linear-gradient(
+            to right,
+            red,
+            orange,
+            yellow,
+            green,
+            blue,
+            indigo,
+            violet
+    );
+    position: relative;
+    margin: auto;
+    text-align: center;
+    font-size: 30px;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: move 35s linear infinite;
+}
+
+@keyframes move {
+    to {
+        background-position: 2000vh;
+    }
+}

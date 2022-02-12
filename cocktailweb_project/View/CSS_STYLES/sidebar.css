@@ -1,0 +1,118 @@
+
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidebar a, .sidebar ul , #myUL li ,#menu li {
+    padding: 8px 8px 8px 10px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+#myUL li:hover {
+    color: #f1f1f1;
+    cursor: context-menu;
+}
+
+.sidebar a:hover, .sidebar li:hover {
+    color: red;
+    /*color: #f1f1f1;*/
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 2px;
+    font-size: 36px;
+    /*margin-right: 5px;*/
+}
+
+.closebtn :hover{
+}
+
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    border: none;
+}
+
+.openbtn:hover {
+    background-color: #444;
+}
+
+.hidden {
+    opacity: 0;
+    width: 0%;
+}
+.hidden:hover{
+    cursor: default;
+}
+
+.close {
+    margin-left: 5px;
+}
+
+.close:hover {
+    cursor: pointer;
+    color: darkred;
+}
+
+#main {
+    transition: margin-left .5s;
+}
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+}
+
+.addBtn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 25px;
+    margin-left : 0.4em;
+    border-radius: 2em;
+    cursor: pointer;
+    background: none;
+    border: 1px solid;
+    letter-spacing: 1px;
+    color: white;
+    border: white 1px solid;
+    transition: 250ms ease-out;
+}
+addBtn:focus {
+     outline: none;
+ }
+addBtn:hover {
+     cursor: pointer;
+}
+
+#searchIngredients {
+    width: 100%;
+    font-size: 14px;
+    color: white;
+    border-radius: 2em;
+    background: none;
+    font-family: "Source Sans Pro", sans-serif;
+    border: #e3e3e3 1px solid;
+    transition: border 250ms ease-out;
+}
+#searchIngredients {
+    border: white 1px solid;
+    outline: none;
+}

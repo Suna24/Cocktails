@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <script src="../Controller/DisplayCocktails.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="../Controller/ajax.js"></script>
+    <script src="../Controller/konami.js"></script>
+    <link rel="icon" href="https://cdn.discordapp.com/attachments/927911630602403880/931129861945294849/cocococococococockail.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1"/>
+    <link href="CSS_STYLES/accueil.css" rel="stylesheet">
+    <link href="CSS_STYLES/Cocktail_Card.css" rel="stylesheet">
+    <link href="CSS_STYLES/sidebar.css" rel="stylesheet">
+
+    <title>TurboCockail</title>
+</head>
+<body>
+<div class="content">
+
+    <div id="main">
+    <!-- Volet latéral -->
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <ul id="menu">
+            <div class="wrapper">
+                <input type="text" list="ingredients" id="searchIngredients" placeholder="Rechercher un ingrédient" onkeyup="displayBDDIngredients()"/>
+                <datalist id="ingredients"></datalist>
+                <button onclick="newElement()" class="addBtn">+</button>
+            </div>
+            <ul id="myUL"></ul>
+        </ul>
+    </div>
+
+    <!-- Barre de navigation -->
+        <nav role="navigation" id="nav">
+            <button id="openbtn_id" class="openbtn" onclick="openNav()">☰ Ajouter ingrédients</button>
+            <p id="title">Bienvenue sur le site du Turbo-Cocktail !</p>
+        </nav>
+
+        <!-- Ici c'est l'ancienne nav avec le menu et la liste, normalement ya plus besoin donc si tu lis ce message et que tu t'appelles Bastien tu peux supprimer -->
+    <!-- nav role="navigation">
+                <ul id="menu">
+                    <div class="wrapper">
+                        <input type="text" list="ingredients" id="searchIngredients" placeholder="Rechercher un ingrédient" onkeyup="displayBDDIngredients()"/>
+                        <datalist id="ingredients"></datalist>
+                        <button onclick="newElement()" class="addBtn">ADD</button>
+                    </div>
+                    <ul id="myUL"></ul>
+                </ul>
+        <p>Bienvenue sur le site du Turbo-Cocktail !</p>
+    </nav -->
+
+    <!-- Barre de progression -->
+    <div id="progress"></div>
+
+    <!-- Barre de recherche -->
+    <div class="search">
+        <input type="text" class="searchTerm" id="cocktailNameSearch" onkeyup="showHint()" placeholder="Rechercher un cocktail">
+    </div>
+
+    <!-- Tous les cocktails affichés -->
+    <div id="txtHint" class="results"></div>
+    </div>
+</div>
+
+    <!-- Bas de page -->
+    <footer id="footer">
+        <p class="firstFooter">Réalisé par le turbo groupe : Antonin, Bastien, Erhan, Simon</p>
+        <p>Mentions légales, All Rights Reserved</p>
+    </footer>
+
+</body>
+<script src="../Controller/loadbar.js"></script>
+<script src="../Controller/sidebar.js"></script>
+</html>
