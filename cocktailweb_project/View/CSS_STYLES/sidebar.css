@@ -81,14 +81,13 @@
 }
 
 .addBtn {
-    background: none;
     border: none;
     color: white;
     font-size: 25px;
     margin-left : 0.4em;
     border-radius: 2em;
     cursor: pointer;
-    background: none;
+    background-color: black;
     border: 1px solid;
     letter-spacing: 1px;
     color: white;

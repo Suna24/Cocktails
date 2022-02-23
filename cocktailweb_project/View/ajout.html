@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="icon" href="https://cdn.discordapp.com/attachments/927911630602403880/931129861945294849/cocococococococockail.png">
+    <meta charset="UTF-8">
+    <title>TurboCockail - Ajout</title>
+
+    <link href="CSS_STYLES/sidebar.css" rel="stylesheet">
+    <link href="CSS_STYLES/accueil.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav role="navigation" id="nav">
+        <button id="openbtn_id" class="openbtn" onclick="window.location.href='accueil.html'">Accueil</button>
+        <p id="title">Ajouter un cocktail à la base de données</p>
+    </nav>
+
+    <!-- Barre de progression -->
+    <div id="progress"></div>
+
+    <div class="page">
+        <form id="ajouter" method="post" action="ajout.php">
+
+            <fieldset>
+                <h3>Le cocktail</h3>
+                <input type="text" placeholder="Le nom de votre cocktail" required/>
+            </fieldset>
+
+            <fieldset id="ingredients">
+                <h3>Les ingrédients</h3>
+                <div id="firstNode">
+                    <input class="ingredient" type="text" placeholder="Ingrédient" required/>
+                    <input class="quantite" type=text" placeholder="Quantité" required/>
+                    <input class="unite" type="text" placeholder="Unité" required/>
+                </div>
+
+                <span onclick="newElement()" class="add">+</span>
+            </fieldset>
+
+            <fieldset>
+                <h3>La recette</h3>
+                <textarea type="text" placeholder="La recette" required></textarea>
+            </fieldset>
+
+            <fieldset>
+                <h3>La photo</h3>
+                <input type="text" placeholder="Lien de la photo" required/>
+            </fieldset>
+
+            <div id="containAddLink">
+                <input class="ajout" type="submit" value="Enregistrer le cocktail !"/>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bas de page -->
+    <footer id="footer">
+        <p class="firstFooter">Réalisé par le turbo groupe : Antonin, Bastien, Erhan, Simon</p>
+        <p>Mentions légales, All Rights Reserved</p>
+    </footer>
+
+</body>
+<script src="../Controller/loadbar.js"></script>
+<script src="../Controller/addIngredientToTheList.js"></script>
+</html>

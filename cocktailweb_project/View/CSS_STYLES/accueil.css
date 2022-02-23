@@ -147,3 +147,97 @@ html, body {
         background-position: 2000vh;
     }
 }
+
+#containAddLink{
+    text-align: center;
+    margin-bottom: 2em;
+    margin-top: 2em;
+}
+
+#containAddLink button {
+    padding: 0.5em;
+}
+
+form {
+    padding: 20px 0;
+    position: relative;
+    z-index: 2;
+}
+
+form input,
+form textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: 0;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    padding: 10px 15px;
+    margin: 0 auto 10px auto;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    color: white;
+    transition-duration: 0.25s;
+    font-weight: 300;
+}
+
+form input {
+    width: 300px;
+}
+
+#ingredients div{
+    display: flex;
+}
+
+.quantite, .unite {
+    width: 7em;
+}
+
+form textarea {
+    width: 500px;
+    height: 200px;
+    min-width: 400px;
+    min-height: 200px;
+    max-width: 700px;
+    max-height: 200px;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.61);
+}
+
+fieldset {
+    width: 50%;
+    margin: auto;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 5px;
+}
+
+h3{
+    color: white;
+    margin-top: 0;
+}
+
+.add, .ajout {
+    display: block;
+    margin: auto;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+}
+
+.add:hover {
+    background: linear-gradient(-45deg,#ee7752, #e73c7e, #23a6d5, #23d5ab);
+}
+
+.add{
+    width: 3em;
+}

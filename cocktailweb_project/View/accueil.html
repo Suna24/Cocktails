@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="fr" xmlns="http://www.w3.org/1999/html">
 <head>
     <script src="../Controller/DisplayCocktails.js"></script>
 
@@ -38,19 +38,6 @@
             <p id="title">Bienvenue sur le site du Turbo-Cocktail !</p>
         </nav>
 
-        <!-- Ici c'est l'ancienne nav avec le menu et la liste, normalement ya plus besoin donc si tu lis ce message et que tu t'appelles Bastien tu peux supprimer -->
-    <!-- nav role="navigation">
-                <ul id="menu">
-                    <div class="wrapper">
-                        <input type="text" list="ingredients" id="searchIngredients" placeholder="Rechercher un ingrédient" onkeyup="displayBDDIngredients()"/>
-                        <datalist id="ingredients"></datalist>
-                        <button onclick="newElement()" class="addBtn">ADD</button>
-                    </div>
-                    <ul id="myUL"></ul>
-                </ul>
-        <p>Bienvenue sur le site du Turbo-Cocktail !</p>
-    </nav -->
-
     <!-- Barre de progression -->
     <div id="progress"></div>
 
@@ -61,6 +48,11 @@
 
     <!-- Tous les cocktails affichés -->
     <div id="txtHint" class="results"></div>
+
+        <div id="containAddLink">
+            <button class="addBtn" onclick="window.location.href='ajout.html'">Ajouter un cocktail</button>
+        </div>
+
     </div>
 </div>
 
