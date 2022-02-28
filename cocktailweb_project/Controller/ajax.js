@@ -14,8 +14,8 @@ async function onLoad(){
         all_ingredients.push(x[i].value);
     }
     }, 500);
-
 }
+
 function showHint() {
     let request = "../Model/BDDToCocktailManager.php?";
     var ing_values = [];
@@ -32,6 +32,8 @@ function showHint() {
     XMLHttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             document.getElementById("txtHint").innerHTML = this.responseText;
+            like();
+            dislike();
         }
     };
     if(ing_values.length!==0 && str.length!==0){

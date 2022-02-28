@@ -94,3 +94,11 @@ article {
 .preperation > div {
     margin-bottom: 10px;
 }
+
+.like{
+    color: greenyellow;
+}
+
+.dislike{
+    color: red;
+}
