@@ -84,13 +84,15 @@ foreach($ingredients_to_create as $ligne) {
 foreach ($cocktail_name as $ckt){
     $recipe= "";
     $image="";
+    $like=0;
+    $dislike=0;
     //TODO une requête pour le nom du cocktail et sa recette ainsi que le nombre d'ingrédients
     /*SELECT cname, recette, COUNT(quantite.cocktail_id) FROM cocktail
      INNER JOIN quantite ON quantite.cocktail_id = cocktail.id WHERE cname=\"$ckt\";*/
 
 
     //TODO une seconde requête pour tous les ingrédients et les quantités
-    $sql = "SELECT cname,image,recette,name,value,unit FROM cocktail
+    $sql = "SELECT cname,image,recette,`like`, dislike,name,value,unit FROM cocktail
     INNER JOIN quantite ON quantite.cocktail_id=cocktail.id 
     INNER JOIN ingredient ON ingredient.id=quantite.ingredient_id
 WHERE cname=\"$ckt\"";
@@ -102,9 +104,11 @@ WHERE cname=\"$ckt\"";
         echo $ligne[unit]. "<br>";*/
         $recipe = $ligne[recette];
         $image = $ligne[image];
+        $like = $ligne[like];
+        $dislike = $ligne[dislike];
         array_push($quantities,new quantity(new ingredient($ligne[name]),$ligne[unit],$ligne[value]));
     }
-    array_push($cocktails,new cocktail($ckt,$recipe,$quantities,$image));
+    array_push($cocktails,new cocktail($ckt,$recipe,$quantities,$image, $like, $dislike));
     $quantities = array();
 }
 foreach ($cocktails as $cocktail){
