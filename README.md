@@ -1,4 +1,10 @@
 # Cocktails
+![HTML5](https://img.shields.io/static/v1?style=for-the-badge&message=HTML5&color=E34F26&logo=HTML5&logoColor=FFFFFF&label=)
+![CSS3](https://img.shields.io/static/v1?style=for-the-badge&message=CSS3&color=1572B6&logo=CSS3&logoColor=FFFFFF&label=)
+![PHP](https://img.shields.io/static/v1?style=for-the-badge&message=PHP&color=777BB4&logo=PHP&logoColor=FFFFFF&label=)
+![phpMyAdmin](https://img.shields.io/static/v1?style=for-the-badge&message=phpMyAdmin&color=6C78AF&logo=phpMyAdmin&logoColor=FFFFFF&label=)
+![JavaScript](https://img.shields.io/static/v1?style=for-the-badge&message=JavaScript&color=222222&logo=JavaScript&logoColor=F7DF1E&label=)
+![Raspberry Pi](https://img.shields.io/static/v1?style=for-the-badge&message=Raspberry+Pi&color=A22846&logo=Raspberry+Pi&logoColor=FFFFFF&label=)
 
 Cocktails est un projet réalisé dans le but de lister différents cocktails en utilisant nos connaissances apprises lors de notre formation en terme de développement front-end mais également de développementt back-end avec un serveur et une base de données. Notre site web est accessible ici --> <a href="http://cocktailproject.ddns.net/">Cocktails</a>
 
@@ -6,17 +12,17 @@ Cocktails est un projet réalisé dans le but de lister différents cocktails en
 
 ## Sommaire
 
-[Explications](https://github.com/Suna24/Cocktails/blob/main/README.md#explications)
+[Explications](#explications)
 
-[Technologies](https://github.com/Suna24/Cocktails/blob/main/README.md#technologies)
- - [HTML & CSS](https://github.com/Suna24/Cocktails/blob/main/README.md#html--css)
- - [Javascript & Ajax](https://github.com/Suna24/Cocktails/blob/main/README.md#javascript--ajax)
- - [PHP](https://github.com/Suna24/Cocktails/blob/main/README.md#php)
- - [Raspberry](https://github.com/Suna24/Cocktails/blob/main/README.md#raspberry)
- - [Architecture](https://github.com/Suna24/Cocktails/blob/main/README.md#architecture)
- - [Base de données](https://github.com/Suna24/Cocktails/blob/main/README.md#base-de-donn%C3%A9es)
+[Technologies](#technologies)
+ - [HTML & CSS](#html--css)
+ - [Javascript & Ajax](#javascript--ajax)
+ - [PHP](#php)
+ - [Raspberry](#raspberry)
+ - [Architecture](#architecture)
+ - [Base de données](#base-de-donn%C3%A9es)
 
-[Contributeurs](https://github.com/Suna24/Cocktails/blob/main/README.md#contributeurs)
+[Contributeurs](#contributeurs)
 
 ## Explications
 
@@ -47,7 +53,7 @@ Afin de communiquer avec le serveur et faire des requêtes à la base de donnée
 
 ### Raspberry
 
-Afin d'héberger notre site internet, nous avons utilisé un raspberry py. EIdras s'est entièrement occupé de le configurer afin qu'il puisse héberger correctement le site internet.
+Afin d'héberger notre site internet, nous avons utilisé un raspberry py. Simon s'est entièrement occupé de le configurer afin qu'il puisse héberger correctement le site internet.
 
 ### Architecture
 
