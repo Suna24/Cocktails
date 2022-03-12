@@ -1,8 +1,12 @@
+<?php
+    include_once "../Model/register.php"
+?>
+
 <!DOCTYPE html><html lang="fr">
 <head>
     <link rel="icon" href="https://cdn.discordapp.com/attachments/927911630602403880/931129861945294849/cocococococococockail.png">
     <meta charset="UTF-8">
-    <title>TurboCockail - Ajout</title>
+    <title>TurboCockail - Connexion</title>
 
     <link href="CSS_STYLES/sidebar.css" rel="stylesheet">
     <link href="CSS_STYLES/accueil.css" rel="stylesheet">
@@ -22,61 +26,64 @@
         <div class="login-html">
             <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Se connecter</label>
             <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">S'incrire</label>
-            <div class="login-form">
+            <div class="login-form" method="post" action="../Model/register.php">
                 <div class="sign-in-htm">
+                    <form action="TODO" method="post">
                     <div class="group">
-                        <label for="user" class="label">Nom d'utilisateur</label>
-                        <input id="user" type="text" class="input">
+                        <label for="user-signin" class="label">Nom d'utilisateur</label>
+                        <input id="user-signin" type="text" class="input" required>
                     </div>
                     <div class="group">
-                        <label for="pass" class="label">Mot de passe</label>
-                        <input id="pass" type="password" class="input" data-type="password">
+                        <label for="pass-signin" class="label">Mot de passe</label>
+                        <input id="pass-signin" type="password" class="input" data-type="password" required>
                     </div>
                     <div class="group">
                         <input id="check" type="checkbox" class="check" checked>
                         <label for="check"><span class="icon"></span> Rester connecté</label>
                     </div>
                     <div class="group">
-                        <input type="submit" class="button" value="Se connecter">
+                        <input type="submit" name="login" class="button" value="Se connecter" onclick="test()">
                     </div>
                     <div class="hr"></div>
                     <div class="foot-lnk">
                         <a href="#forgot">Mot de passe oublié ?</a>
                     </div>
+                    </form>
                 </div>
                 <div class="sign-up-htm">
+                    <form method="post">
                     <div class="group">
-                        <label for="user" class="label">Nom d'utilisateur</label>
-                        <input id="user" type="text" class="input">
+                        <label for="user-signup" class="label">Nom d'utilisateur</label>
+                        <input id="user-signup" name="username" type="text" class="input" required>
                     </div>
                     <div class="group">
-                        <label for="pass" class="label">Mot de passe</label>
-                        <input id="pass" type="password" class="input" data-type="password">
+                        <label for="pass-signup" class="label">Mot de passe</label>
+                        <input id="pass-signup" name="password" type="password" class="input" data-type="password" required>
                     </div>
                     <div class="group">
-                        <label for="pass" class="label">Répéter le mot de passe</label>
-                        <input id="pass" type="password" class="input" data-type="password">
+                        <label for="pass-confirm-signup" class="label">Répéter le mot de passe</label>
+                        <input id="pass-confirm-signup" name="confirm_password" type="password" class="input" data-type="password" required>
                     </div>
                     <div class="group">
-                        <input type="submit" class="button" value="S'inscrire">
+                        <input type="submit" name="register" class="button" value="S'inscrire">
                     </div>
                     <div class="hr"></div>
                     <div class="foot-lnk">
-                        <label for="tab-1">J'ai déjà un compte</a>
+                        <label for="tab-1">J'ai déjà un compte</label>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Bas de page -->
-    <footer id="footer">
+    <!--TODO: Fix la position du footer proprement -->
+    <footer id="footer" style="position: absolute">
         <p class="firstFooter">Réalisé par le turbo groupe : Antonin, Bastien, Erhan, Simon</p>
         <p>Mentions légales, All Rights Reserved</p>
     </footer>
 
 </body>
 <script src="../Controller/loadbar.js"></script>
-<script src="../Controller/addIngredientToTheList.js"></script>
-<script src="../Model/Ingredient.js"></script>
 </html>

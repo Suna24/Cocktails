@@ -30,7 +30,6 @@ body{
     display: inline-grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-columns: 15em auto 15em;
-
 }
 
 nav p{
@@ -88,7 +87,7 @@ nav p{
 
 /** Bas de page **/
 footer{
-    position: absolute;
+    /* position: absolute; */
     bottom: 0;
     width: 100%;
     background-color: black;
