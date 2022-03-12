@@ -5,6 +5,7 @@ async function onLoad(){
     //TODO set all_ingredients
     showHint();
     loadBar();
+    showPseudo();
     displayBDDIngredients();
     //await new Promise(resolve => setTimeout(resolve, 500));
     setTimeout(() => {
@@ -24,8 +25,8 @@ function showHint() {
         ing_values.push($(this).text());
     });
     ing_values = ing_values.map(e => e.replace(/.$/, ""))
-    console.log(ing_values.length);
-    console.log(ing_values);
+    //console.log(ing_values.length);
+    //console.log(ing_values);
 
     let str = document.getElementById("cocktailNameSearch").value;
     const XMLHttp = new XMLHttpRequest();
@@ -52,8 +53,22 @@ function showHint() {
     } else if (str.length!==0){
         request+="q="+str;
     }
-    console.log(request);
+    //console.log(request);
     XMLHttp.open("GET", request, true);
+    XMLHttp.send();
+}
+
+function showPseudo() {
+    // Test affichage utilisateur
+    const XMLHttp = new XMLHttpRequest();
+    XMLHttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            console.log(this.responseText);
+            document.getElementById("pseudo").innerHTML = this.responseText;
+        }
+    };
+    let test = "../Model/session.php?";
+    XMLHttp.open("GET", test, true);
     XMLHttp.send();
 }
 
@@ -144,11 +159,11 @@ function newElement() {
 function checkInput(inputValue){
     var toReturn;
     if(all_ingredients.map(e => e.toLowerCase()).includes(inputValue.trim().toLowerCase())){
-        console.log("il est dans la liste");
+        //console.log("il est dans la liste");
         toReturn = true;
         $('#myUL li').each(function() {
             if($( this ).text().toLowerCase()===inputValue.trim().toLowerCase()+"\u00D7"){
-                console.log("j'ai trouvé le même");
+                //console.log("j'ai trouvé le même");
                 toReturn=false;
                 return false;
             }

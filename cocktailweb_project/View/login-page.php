@@ -1,5 +1,6 @@
 <?php
-    include_once "../Model/register.php"
+    include_once "../Model/register.php";
+    include_once "../Model/login.php";
 ?>
 
 <!DOCTYPE html><html lang="fr">
@@ -28,14 +29,14 @@
             <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">S'incrire</label>
             <div class="login-form" method="post" action="../Model/register.php">
                 <div class="sign-in-htm">
-                    <form action="TODO" method="post">
+                    <form method="post">
                     <div class="group">
                         <label for="user-signin" class="label">Nom d'utilisateur</label>
-                        <input id="user-signin" type="text" class="input" required>
+                        <input id="user-signin" name="username-signin" type="text" class="input" required>
                     </div>
                     <div class="group">
                         <label for="pass-signin" class="label">Mot de passe</label>
-                        <input id="pass-signin" type="password" class="input" data-type="password" required>
+                        <input id="pass-signin" name="password-signin" type="password" class="input" data-type="password" required>
                     </div>
                     <div class="group">
                         <input id="check" type="checkbox" class="check" checked>
@@ -54,15 +55,15 @@
                     <form method="post">
                     <div class="group">
                         <label for="user-signup" class="label">Nom d'utilisateur</label>
-                        <input id="user-signup" name="username" type="text" class="input" required>
+                        <input id="user-signup" name="username-signup" type="text" class="input" required>
                     </div>
                     <div class="group">
                         <label for="pass-signup" class="label">Mot de passe</label>
-                        <input id="pass-signup" name="password" type="password" class="input" data-type="password" required>
+                        <input id="pass-signup" name="password-signup" type="password" class="input" data-type="password" required>
                     </div>
                     <div class="group">
                         <label for="pass-confirm-signup" class="label">Répéter le mot de passe</label>
-                        <input id="pass-confirm-signup" name="confirm_password" type="password" class="input" data-type="password" required>
+                        <input id="pass-confirm-signup" name="confirm_password-signup" type="password" class="input" data-type="password" required>
                     </div>
                     <div class="group">
                         <input type="submit" name="register" class="button" value="S'inscrire">

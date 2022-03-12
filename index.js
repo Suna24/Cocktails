@@ -29,7 +29,7 @@ function stopLoading() {
 }
 
 function suiteTraitement() {
-    window.location = "http://cocktailproject.ddns.net/cocktailweb_project/View/accueil.html";
+    window.location = "http://cocktailproject.ddns.net/cocktailweb_project/View/login-page.php";
 }
 
 setTimeout(suiteTraitement, 3500);

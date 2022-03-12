@@ -15,13 +15,13 @@ $username_err = $password_err = $confirm_password_err = "";
 // Processing form data when form is submitted
 // echo "REGISTER // username : " . isset($_POST["username"]) . ", password : " . isset($_POST["password"]) . ", confirm_password : " . isset($_POST["confirm_password"]);
 
-if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["confirm_password"])) {
+if (isset($_POST["username-signup"]) && isset($_POST["password-signup"]) && isset($_POST["confirm_password-signup"])) {
     echo "YES";
 
     // Validate username
-    if(empty(trim($_POST["username"]))){
+    if(empty(trim($_POST["username-signup"]))){
         $username_err = "Please enter a username.";
-    } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))){
+    } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username-signup"]))){
         $username_err = "Username can only contain letters, numbers, and underscores.";
     } else{
         // Prepare a select statement
@@ -32,14 +32,14 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["conf
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
 
             // Set parameters
-            $param_username = trim($_POST["username"]);
+            $param_username = trim($_POST["username-signup"]);
 
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 if($stmt->rowCount() == 1){
                     $username_err = "This username is already taken.";
                 } else{
-                    $username = trim($_POST["username"]);
+                    $username = trim($_POST["username-signup"]);
                 }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -51,26 +51,26 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["conf
     }
 
     // Validate password
-    if(empty(trim($_POST["password"]))){
+    if(empty(trim($_POST["password-signup"]))){
         $password_err = "Please enter a password.";
-    } elseif(strlen(trim($_POST["password"])) < 6){
+    } elseif(strlen(trim($_POST["password-signup"])) < 6){
         $password_err = "Password must have at least 6 characters.";
     } else{
-        $password = trim($_POST["password"]);
+        $password = trim($_POST["password-signup"]);
     }
 
     // Validate confirm password
-    if(empty(trim($_POST["confirm_password"]))){
+    if(empty(trim($_POST["confirm_password-signup"]))){
         $confirm_password_err = "Please confirm password.";
     } else{
-        $confirm_password = trim($_POST["confirm_password"]);
+        $confirm_password = trim($_POST["confirm_password-signup"]);
         if(empty($password_err) && ($password != $confirm_password)){
             $confirm_password_err = "Password did not match.";
         }
     }
 
     // Check input errors before inserting in database
-    echo ("username ".$username_err .", password ". $password_err .", confirm_password". $confirm_password_err);
+    echo ("username-signup : ".$username_err ."<br> password-signup : ". $password_err ."<br> confirm_password-signup : ". $confirm_password_err);
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         // Prepare an insert statement
         $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
