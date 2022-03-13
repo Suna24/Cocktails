@@ -1,3 +1,8 @@
 <?php
 session_start();
-echo isset($_SESSION["username"]) ? ", ".$_SESSION["username"] : "";
+
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] === false){
+    echo "redirect";
+} else {
+    echo isset($_SESSION["username"]) ? ", ".$_SESSION["username"] : "";
+}

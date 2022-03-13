@@ -7,16 +7,17 @@
 <head>
     <link rel="icon" href="https://cdn.discordapp.com/attachments/927911630602403880/931129861945294849/cocococococococockail.png">
     <meta charset="UTF-8">
-    <title>TurboCockail - Connexion</title>
+    <title>TurboCocktail - Connexion</title>
 
     <link href="CSS_STYLES/sidebar.css" rel="stylesheet">
     <link href="CSS_STYLES/accueil.css" rel="stylesheet">
     <link href="CSS_STYLES/login.css" rel="stylesheet">
 </head>
 <body>
+
     <!-- Barre de navigation -->
     <nav role="navigation" id="nav">
-        <button id="openbtn_id" class="openbtn" onclick="window.location.href='accueil.html'">Accueil</button>
+        <button id="openbtn_id" class="openbtn disabled">Accueil</button>
         <p id="title">Connexion</p>
     </nav>
 
@@ -26,7 +27,7 @@
     <div class="login-wrap">
         <div class="login-html">
             <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Se connecter</label>
-            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">S'incrire</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">S'inscrire</label>
             <div class="login-form" method="post" action="../Model/register.php">
                 <div class="sign-in-htm">
                     <form method="post">
@@ -88,3 +89,8 @@
 </body>
 <script src="../Controller/loadbar.js"></script>
 </html>
+<?php
+if (isset($_POST["redirect"])){
+    echo "<script type=\"text/javascript\" defer> document.getElementById(\"title\").innerHTML = \"Tu dois être connecté !\"; </script>";
+}
+?>

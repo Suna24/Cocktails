@@ -50,8 +50,12 @@
     border: none;
 }
 
-.openbtn:hover {
+.openbtn:hover:not(.disabled){
     background-color: #444;
+}
+
+.disabled {
+    cursor: not-allowed;
 }
 
 .hidden {

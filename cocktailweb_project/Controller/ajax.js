@@ -5,7 +5,7 @@ async function onLoad(){
     //TODO set all_ingredients
     showHint();
     loadBar();
-    showPseudo();
+    checkIfLoggedIn();
     displayBDDIngredients();
     //await new Promise(resolve => setTimeout(resolve, 500));
     setTimeout(() => {
@@ -58,17 +58,38 @@ function showHint() {
     XMLHttp.send();
 }
 
-function showPseudo() {
-    // Test affichage utilisateur
+function checkIfLoggedIn(){
     const XMLHttp = new XMLHttpRequest();
     XMLHttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
-            document.getElementById("pseudo").innerHTML = this.responseText;
+            if(this.responseText === "redirect"){
+                redirectToLogin();
+            } else {
+                showPseudo();
+            }
         }
     };
-    let pseudo = "../Model/Login_System/session.php?";
-    XMLHttp.open("GET", pseudo, true);
+    let response = "../Model/Login_System/session.php?";
+    XMLHttp.open("GET", response, true);
     XMLHttp.send();
+}
+
+function showPseudo(pseudo) {
+    document.getElementById("pseudo").innerHTML = pseudo;
+}
+
+function redirectToLogin() {
+    let form = document.createElement("form");
+    let element = document.createElement("input");
+
+    element.name="redirect";
+    form.appendChild(element);
+
+    form.method = "POST";
+    form.action = "../View/login-page.php";
+    document.body.appendChild(form);
+    form.submit();
+    //window.location.href = "../View/login-page.php"
 }
 
 /**************************************************************************************************************************/
