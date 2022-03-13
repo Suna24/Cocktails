@@ -33,7 +33,7 @@ body{
 }
 
 nav p{
-    position: relative;
+    /* position: relative; */
     margin: auto;
     color: white;
     text-align: center;
@@ -41,6 +41,26 @@ nav p{
     padding-top: 0.7em;
     padding-bottom: 0.7em;
     /* border: darkorange solid 2px; */
+}
+#logout {
+    color: white;
+    align-items: center;
+    position: relative;
+    margin: auto;
+    text-align: center;
+    font-size: 30px;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+    display: flex;
+    text-decoration: none;
+}
+
+#logoutIcon {
+    padding-right: 0.4em;
+}
+
+#logoutText {
+    font-size: medium;
 }
 
 /* Barre de progression */
@@ -122,7 +142,7 @@ html, body {
     display: inline;
 }
 
-#rainbowText {
+.rainbowText {
     background-image: linear-gradient(
             to right,
             red,

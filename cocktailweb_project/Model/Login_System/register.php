@@ -6,7 +6,7 @@ try {
     $pdo = new PDO("$server:host=$host;dbname=$base",$user,$pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch(PDOException $e){
-    die("ERROR: Could not connect. " . $e->getMessage());
+    die("ERREUR: Impossible de se connecter. " . $e->getMessage());
 }
 
 // initialisation des variables avec des valeurs vides
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username-signup"]) && 
     if(empty(trim($_POST["username-signup"]))){
         $username_err = "Please enter a username.";
     } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username-signup"]))){
-        $username_err = "Username can only contain letters, numbers, and underscores.";
+        $username_err = "Un nom d'utilisateur peut seulement contenir des lettres, nombres et underscores.";
     } else{
         // Préparation d'une requête SELECT
         $sql = "SELECT id FROM users WHERE username = :username";
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username-signup"]) && 
                     $username = trim($_POST["username-signup"]);
                 }
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo "Oupsi ! Quelque chose s'est mal passé. Veuillez réessayer plus tard.";
             }
 
             // Fermeture de la requête
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username-signup"]) && 
     if(empty(trim($_POST["password-signup"]))){
         $password_err = "Please enter a password.";
     } elseif(strlen(trim($_POST["password-signup"])) < 6){
-        $password_err = "Password must have at least 6 characters.";
+        $password_err = "Le mot de passe doit comporter au moins 6 caractères.";
     } else{
         $password = trim($_POST["password-signup"]);
     }

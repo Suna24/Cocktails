@@ -15,7 +15,7 @@ try {
     $pdo = new PDO("$server:host=$host;dbname=$base",$user,$pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch(PDOException $e){
-    die("ERROR: Could not connect. " . $e->getMessage());
+    die("ERREUR: Impossible de se connecter. " . $e->getMessage());
 }
 
 // initialisation des variables avec des valeurs vides
@@ -26,14 +26,14 @@ $username_err = $password_err = $login_err = "";
 if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username-signin"]) && isset($_POST["password-signin"])){
     // Vérification si le nom d'utilisateur est vide
     if(empty(trim($_POST["username-signin"]))){
-        $username_err = "Please enter username.";
+        $username_err = "Veuillez entrer un nom d'utilisateur.";
     } else{
         $username = trim($_POST["username-signin"]);
     }
 
     // Vérification si le mot de passe est vide
     if(empty(trim($_POST["password-signin"]))){
-        $password_err = "Please enter your password.";
+        $password_err = "Veuillez entrer un mot de passe.";
     } else{
         $password = trim($_POST["password-signin"]);
     }
@@ -79,7 +79,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username-signin"]) && i
                     $login_err = "Nom d'utilisateur ou mot de passe invalide.";
                 }
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo "Oupsi ! Quelque chose s'est mal passé. Veuillez réessayer plus tard.";
             }
 
             // Fermeture de la requête

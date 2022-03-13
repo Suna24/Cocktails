@@ -1,0 +1,1 @@
+<?php $server = "mysql"; $host = "localhost"; $base = "cocktails"; $user = "admin"; $pass = "entrepotes"; ?>

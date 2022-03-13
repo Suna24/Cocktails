@@ -38,8 +38,10 @@ document.addEventListener('keydown', function(e) {
 });
 
 function activateCheats() {
-    var title = document.getElementById("title");
-    title.setAttribute("id","rainbowText");
+    var title = document.getElementById("nav");
+    var logout = document.getElementById("logout");
+    title.classList.toggle("rainbowText");
+    logout.classList.toggle("rainbowText");
     alert("Vous avez débloqué le titre arc-en-ciel !!");
 
     /*Testing*/

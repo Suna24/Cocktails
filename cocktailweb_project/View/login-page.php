@@ -1,6 +1,6 @@
 <?php
-    include_once "../Model/register.php";
-    include_once "../Model/login.php";
+    include_once "../Model/Login_System/register.php";
+    include_once "../Model/Login_System/login.php";
 ?>
 
 <!DOCTYPE html><html lang="fr">

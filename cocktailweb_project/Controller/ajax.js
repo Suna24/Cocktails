@@ -63,12 +63,11 @@ function showPseudo() {
     const XMLHttp = new XMLHttpRequest();
     XMLHttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
-            console.log(this.responseText);
             document.getElementById("pseudo").innerHTML = this.responseText;
         }
     };
-    let test = "../Model/session.php?";
-    XMLHttp.open("GET", test, true);
+    let pseudo = "../Model/Login_System/session.php?";
+    XMLHttp.open("GET", pseudo, true);
     XMLHttp.send();
 }
 
