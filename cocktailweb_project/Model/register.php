@@ -1,4 +1,5 @@
 <?php
+// Identifiants de connexion BDD
 require_once ('db.inc.php');
 
 try {
@@ -8,33 +9,31 @@ try {
     die("ERROR: Could not connect. " . $e->getMessage());
 }
 
-// Define variables and initialize with empty values
+// initialisation des variables avec des valeurs vides
 $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
 
-// Processing form data when form is submitted
-// echo "REGISTER // username : " . isset($_POST["username"]) . ", password : " . isset($_POST["password"]) . ", confirm_password : " . isset($_POST["confirm_password"]);
-
-if (isset($_POST["username-signup"]) && isset($_POST["password-signup"]) && isset($_POST["confirm_password-signup"])) {
+// Traitement des données du formulaire lorsqu'il est envoyé
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username-signup"]) && isset($_POST["password-signup"]) && isset($_POST["confirm_password-signup"])) {
     echo "YES";
 
-    // Validate username
+    // Validation du nom d'utilisateur
     if(empty(trim($_POST["username-signup"]))){
         $username_err = "Please enter a username.";
     } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username-signup"]))){
         $username_err = "Username can only contain letters, numbers, and underscores.";
     } else{
-        // Prepare a select statement
+        // Préparation d'une requête SELECT
         $sql = "SELECT id FROM users WHERE username = :username";
 
         if($stmt = $pdo->prepare($sql)){
-            // Bind variables to the prepared statement as parameters
+            // Assignation des variables comme paramètres à la requête préparée
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
 
-            // Set parameters
-            $param_username = trim($_POST["username-signup"]);
+            // Attribution des paramètres
+            $param_username = trim($_POST["username-signup"]); // Suppression des espaces et caractères spéciaux
 
-            // Attempt to execute the prepared statement
+            // Tentative d'exécution de la requête préparée
             if($stmt->execute()){
                 if($stmt->rowCount() == 1){
                     $username_err = "This username is already taken.";
@@ -45,12 +44,12 @@ if (isset($_POST["username-signup"]) && isset($_POST["password-signup"]) && isse
                 echo "Oops! Something went wrong. Please try again later.";
             }
 
-            // Close statement
+            // Fermeture de la requête
             unset($stmt);
         }
     }
 
-    // Validate password
+    // Validation du mot de passe
     if(empty(trim($_POST["password-signup"]))){
         $password_err = "Please enter a password.";
     } elseif(strlen(trim($_POST["password-signup"])) < 6){
@@ -59,7 +58,7 @@ if (isset($_POST["username-signup"]) && isset($_POST["password-signup"]) && isse
         $password = trim($_POST["password-signup"]);
     }
 
-    // Validate confirm password
+    // Validation de la confirmation du mot de passe
     if(empty(trim($_POST["confirm_password-signup"]))){
         $confirm_password_err = "Please confirm password.";
     } else{
@@ -69,30 +68,31 @@ if (isset($_POST["username-signup"]) && isset($_POST["password-signup"]) && isse
         }
     }
 
-    // Check input errors before inserting in database
+    // Vérification des erreurs de saisie avant l'insertion dans la BDD
+    // TODO : Afficher les erreurs proprement en utilisant du JS
     echo ("username-signup : ".$username_err ."<br> password-signup : ". $password_err ."<br> confirm_password-signup : ". $confirm_password_err);
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
-        // Prepare an insert statement
+        // Préparation d'une requête INSERT INTO
         $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
-        echo "<br>". $sql ."<br>";
+        //echo "<br>". $sql ."<br>";
         if($stmt = $pdo->prepare($sql)){
-            // Bind variables to the prepared statement as parameters
+            // Assignation des variables comme paramètres à la requête préparée
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
             $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
 
-            // Set parameters
+            // Attribution des paramètres
             $param_username = $username;
-            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+            $param_password = password_hash($password, PASSWORD_DEFAULT); // Hachage du mot de passe
 
-            // Attempt to execute the prepared statement
+            // Tentative d'exécution de la requête préparée
             if($stmt->execute()){
-                // Redirect to login page
+                // Redirection à la page de connexion après création de compte avec succès
                 header("location: login-page.php");
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo "Oupsi ! Quelque chose s'est mal passé. Veuillez réessayer plus tard.";
             }
 
-            // Close statement
+            // Fermeture de la requête
             unset($stmt);
         }
     }
