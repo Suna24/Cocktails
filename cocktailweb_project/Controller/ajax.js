@@ -58,6 +58,21 @@ function showHint() {
     XMLHttp.send();
 }
 
+function checkAdminAccess(){
+    const XMLHttp = new XMLHttpRequest();
+    XMLHttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            console.log(this.responseText);
+            if(this.responseText != "admin"){
+
+            }
+        }
+    };
+    let response = "../Model/Login_System/admin_check.php?";
+    XMLHttp.open("GET", response, true);
+    XMLHttp.send();
+}
+
 function checkLoginGetUsername(){
     const XMLHttp = new XMLHttpRequest();
     XMLHttp.onreadystatechange = function() {

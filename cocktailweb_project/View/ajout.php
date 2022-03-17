@@ -1,3 +1,6 @@
+<?php
+include_once "../Model/Login_System/admin_check.php"
+?>
 <!DOCTYPE html><html lang="fr">
 <head>
     <link rel="icon" href="https://cdn.discordapp.com/attachments/927911630602403880/931129861945294849/cocococococococockail.png">
