@@ -7,4 +7,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && isset($_SES
         header("location: accueil.html");
         die();
     }
+} else {
+    header("location: login-page.php");
+    die();
 }
