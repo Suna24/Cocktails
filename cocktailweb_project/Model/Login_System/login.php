@@ -1,6 +1,6 @@
 <?php
 // Initialisation de la session
-session_start();
+//session_start();
 
 // Vérification si l'utilisateur est déjà connecté, si oui on le redirige à la page d'accueil
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
@@ -66,6 +66,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username-signin"]) && i
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;
+                            $_SESSION["passhash"] = hash($hashed_password);
 
                             // On redirige l'utilisateur à la page d'accueil
                             header("location: accueil.html");
@@ -79,7 +80,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username-signin"]) && i
                     $login_err = "Nom d'utilisateur ou mot de passe invalide.";
                 }
             } else{
-                echo "Oupsi ! Quelque chose s'est mal passé. Veuillez réessayer plus tard.";
+                logTitle("Oupsi ! Quelque chose s'est mal passé. Veuillez réessayer plus tard.");
             }
 
             // Fermeture de la requête
@@ -89,6 +90,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username-signin"]) && i
 
     // Fermeture de la connexion BDD
     unset($pdo);
+
+    logTitle($username_err . $login_err . $password_err);
 }
 
 ?>

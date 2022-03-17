@@ -1,6 +1,7 @@
 <?php
-    include_once "../Model/Login_System/register.php";
-    include_once "../Model/Login_System/login.php";
+
+session_start();
+
 ?>
 
 <!DOCTYPE html><html lang="fr">
@@ -90,7 +91,19 @@
 <script src="../Controller/loadbar.js"></script>
 </html>
 <?php
+include_once "../Model/Login_System/register.php";
+include_once "../Model/Login_System/login.php";
+
 if (isset($_POST["redirect"])){
-    echo "<script type=\"text/javascript\" defer> document.getElementById(\"title\").innerHTML = \"Tu dois être connecté !\"; </script>";
+    logTitle("Tu dois être connecté !");
+}
+
+function logTitle($message){
+    echo "<script type=\"text/javascript\" defer> 
+                let title = document.getElementById(\"title\");
+                title.innerHTML = \"". $message ."\"; 
+                title.style.color = \"red\";
+          </script>";
+    echo "<script type=\"text/javascript\" defer> console.log(\"". $message ."\"); </script>";
 }
 ?>

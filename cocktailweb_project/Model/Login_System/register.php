@@ -15,11 +15,10 @@ $username_err = $password_err = $confirm_password_err = "";
 
 // Traitement des données du formulaire lorsqu'il est envoyé
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username-signup"]) && isset($_POST["password-signup"]) && isset($_POST["confirm_password-signup"])) {
-    echo "YES";
-
     // Validation du nom d'utilisateur
     if(empty(trim($_POST["username-signup"]))){
         $username_err = "Please enter a username.";
+
     } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username-signup"]))){
         $username_err = "Un nom d'utilisateur peut seulement contenir des lettres, nombres et underscores.";
     } else{
@@ -41,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username-signup"]) && 
                     $username = trim($_POST["username-signup"]);
                 }
             } else{
-                echo "Oupsi ! Quelque chose s'est mal passé. Veuillez réessayer plus tard.";
+                logTitle("Oupsi ! Quelque chose s'est mal passé. Veuillez réessayer plus tard.");
             }
 
             // Fermeture de la requête
@@ -69,8 +68,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username-signup"]) && 
     }
 
     // Vérification des erreurs de saisie avant l'insertion dans la BDD
-    // TODO : Afficher les erreurs proprement en utilisant du JS
-    echo ("username-signup : ".$username_err ."<br> password-signup : ". $password_err ."<br> confirm_password-signup : ". $confirm_password_err);
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         // Préparation d'une requête INSERT INTO
         $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
@@ -89,15 +86,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username-signup"]) && 
                 // Redirection à la page de connexion après création de compte avec succès
                 header("location: login-page.php");
             } else{
-                echo "Oupsi ! Quelque chose s'est mal passé. Veuillez réessayer plus tard.";
+                logTitle("Oupsi ! Quelque chose s'est mal passé. Veuillez réessayer plus tard.");
             }
 
             // Fermeture de la requête
             unset($stmt);
         }
     }
+    else {
+        logTitle($username_err . $password_err . $confirm_password_err);
+    }
 
     // Close connection
     unset($pdo);
+
 }
+
 ?>
