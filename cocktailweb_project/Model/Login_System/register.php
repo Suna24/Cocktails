@@ -84,7 +84,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username-signup"]) && 
             // Tentative d'exécution de la requête préparée
             if($stmt->execute()){
                 // Redirection à la page de connexion après création de compte avec succès
-                header("location: login-page.php");
+                // header("location: login-page.php");
+                echo "<script type=\"text/javascript\"> window.location = \"login-page.php\" </script>";
             } else{
                 logTitle("Oupsi ! Quelque chose s'est mal passé. Veuillez réessayer plus tard.");
             }

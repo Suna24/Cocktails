@@ -1,10 +1,11 @@
 <?php
 // Initialisation de la session
-//session_start();
+// session_start();
 
 // Vérification si l'utilisateur est déjà connecté, si oui on le redirige à la page d'accueil
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: accueil.html");
+    // header("location: accueil.html");
+    echo "<script type=\"text/javascript\"> window.location = \"accueil.html\" </script>";
     exit;
 }
 
@@ -60,16 +61,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username-signin"]) && i
                         $hashed_password = $row["password"];
                         if(password_verify($password, $hashed_password)){
                             // Le mot de passe est correct, donc on démarre une nouvelle session
-                            session_start();
+                            // session_start();
 
                             // On stocke les données dans des variables de session
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;
-                            $_SESSION["passhash"] = hash($hashed_password);
+                            $_SESSION["passhash"] = password_hash($hashed_password, PASSWORD_DEFAULT);
+                            console․log("hash : " . $hashed_password);
+                            console․log("hash du hash : " . $_SESSION["passhash"]);
 
                             // On redirige l'utilisateur à la page d'accueil
-                            header("location: accueil.html");
+                            // header("location: accueil.html");
+                            echo "<script type=\"text/javascript\"> window.location = \"accueil.html\" </script>";
                         } else{
                             // Le mot de passe n'est pas valide, on affiche un message d'erreur générique
                             $login_err = "Nom d'utilisateur ou mot de passe invalide.";
@@ -92,6 +96,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username-signin"]) && i
     unset($pdo);
 
     logTitle($username_err . $login_err . $password_err);
+}
+
+
+function console․log($message) {
+    echo "<script type=\"text/javascript\"> console.log(\"". $message ."\"); </script>";
 }
 
 ?>

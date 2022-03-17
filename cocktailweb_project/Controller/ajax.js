@@ -5,7 +5,7 @@ async function onLoad(){
     //TODO set all_ingredients
     showHint();
     loadBar();
-    checkIfLoggedIn();
+    checkLoginGetUsername();
     displayBDDIngredients();
     //await new Promise(resolve => setTimeout(resolve, 500));
     setTimeout(() => {
@@ -58,7 +58,7 @@ function showHint() {
     XMLHttp.send();
 }
 
-function checkIfLoggedIn(){
+function checkLoginGetUsername(){
     const XMLHttp = new XMLHttpRequest();
     XMLHttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
