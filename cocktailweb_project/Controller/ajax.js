@@ -1,7 +1,7 @@
 const all_ingredients = [];
 window.onload = onLoad();
 
-async function onLoad(){
+async function onLoad() {
     //TODO set all_ingredients
     showHint();
     loadBar();
@@ -9,11 +9,11 @@ async function onLoad(){
     displayBDDIngredients();
     //await new Promise(resolve => setTimeout(resolve, 500));
     setTimeout(() => {
-    var x = document.getElementById("ingredients").options;
-    var i;
-    for (i = 0; i < x.length; i++) {
-        all_ingredients.push(x[i].value);
-    }
+        var x = document.getElementById("ingredients").options;
+        var i;
+        for (i = 0; i < x.length; i++) {
+            all_ingredients.push(x[i].value);
+        }
     }, 500);
 }
 
@@ -21,7 +21,7 @@ function showHint() {
     let request = "../Model/BDDToCocktailManager.php?";
     var ing_values = [];
     var i;
-    $('#myUL li').each(function() {
+    $('#myUL li').each(function () {
         ing_values.push($(this).text());
     });
     ing_values = ing_values.map(e => e.replace(/.$/, ""))
@@ -30,58 +30,70 @@ function showHint() {
 
     let str = document.getElementById("cocktailNameSearch").value;
     const XMLHttp = new XMLHttpRequest();
-    XMLHttp.onreadystatechange = function() {
+    XMLHttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             document.getElementById("txtHint").innerHTML = this.responseText;
             like();
             dislike();
         }
     };
-    if(ing_values.length!==0 && str.length!==0){
-        request+="q="+str;
+    if (ing_values.length !== 0 && str.length !== 0) {
+        request += "q=" + str;
         //ajout des ingrédients dans la recherche
-        for (i=0;i<ing_values.length;i++){
-            request+="&check_list[]="+ing_values[i];
+        for (i = 0; i < ing_values.length; i++) {
+            request += "&check_list[]=" + ing_values[i];
         }
 
-    } else if(ing_values.length!==0) {
+    } else if (ing_values.length !== 0) {
         //ajout des ingrédients dans la recherche
-        for (i=0;i<ing_values.length;i++){
-            request+="&check_list[]="+ing_values[i];
+        for (i = 0; i < ing_values.length; i++) {
+            request += "&check_list[]=" + ing_values[i];
         }
 
-    } else if (str.length!==0){
-        request+="q="+str;
+    } else if (str.length !== 0) {
+        request += "q=" + str;
     }
     //console.log(request);
     XMLHttp.open("GET", request, true);
     XMLHttp.send();
 }
 
-function checkAdminAccess(){
+function checkAdminAccess() {
     const XMLHttp = new XMLHttpRequest();
-    XMLHttp.onreadystatechange = function() {
+    XMLHttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
-            console.log(this.responseText);
-            if(this.responseText != "admin"){
+            if (this.responseText === "admin") {
+                console.log("Tu es admin");
 
+                let btnDiv = document.createElement("div");
+                btnDiv.id = "containAddLink";
+                let btn = document.createElement("button");
+                btn.onclick = function () {
+                    window.location = 'ajout.php'
+                };
+                btn.innerText = "Ajouter un cocktail";
+                btn.className = "addBtn";
+                btnDiv.appendChild(btn);
+                document.getElementById("main").appendChild(btnDiv);
             }
         }
     };
+
     let response = "../Model/Login_System/admin_check.php?";
     XMLHttp.open("GET", response, true);
     XMLHttp.send();
 }
 
-function checkLoginGetUsername(){
+function checkLoginGetUsername() {
     const XMLHttp = new XMLHttpRequest();
-    XMLHttp.onreadystatechange = function() {
+    XMLHttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
-            console.log(this.responseText);
-            if(this.responseText === "redirect"){
+            //console.log(this.responseText);
+            if (this.responseText === "redirect") {
                 redirectToLogin();
             } else {
                 showPseudo(this.responseText);
+                checkAdminAccess();
             }
         }
     };
@@ -98,7 +110,7 @@ function redirectToLogin() {
     let form = document.createElement("form");
     let element = document.createElement("input");
 
-    element.name="redirect";
+    element.name = "redirect";
     form.appendChild(element);
 
     form.method = "POST";
@@ -110,7 +122,7 @@ function redirectToLogin() {
 
 /**************************************************************************************************************************/
 /** Fonction pour  display la datalist des ingrédients **/
-function displayBDDIngredients(){
+function displayBDDIngredients() {
     let searchBar = document.getElementById("searchIngredients").value;
     var XMLHttp = new XMLHttpRequest();
 
@@ -141,7 +153,7 @@ for (i = 0; i < myNodelist.length; i++) {
 var close = document.getElementsByClassName("close");
 var i;
 for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
+    close[i].onclick = function () {
         var div = this.parentElement;
         div.style.display = "none";
     }
@@ -149,7 +161,7 @@ for (i = 0; i < close.length; i++) {
 
 // Add a "checked" symbol when clicking on a list item
 var list = document.querySelector('ul');
-list.addEventListener('click', function(ev) {
+list.addEventListener('click', function (ev) {
     if (ev.target.tagName === 'LI') {
         ev.target.classList.toggle('checked');
     }
@@ -164,7 +176,7 @@ function newElement() {
     li.appendChild(t);
     if (inputValue === '') {
         alert("You must write something!");
-    } else if (checkInput(inputValue)===false) {
+    } else if (checkInput(inputValue) === false) {
         return;
     } else {
         document.getElementById("myUL").appendChild(li);
@@ -178,12 +190,12 @@ function newElement() {
     li.appendChild(span);
 
     for (i = 0; i < close.length; i++) {
-        close[i].onclick = function() {
+        close[i].onclick = function () {
             var li_ing = this.parentElement;
             var ul_ing_selected = li_ing.parentElement;
             ul_ing_selected.removeChild(li_ing);
             showHint();
-            if (ul_ing_selected.childNodes.length === 0){
+            if (ul_ing_selected.childNodes.length === 0) {
                 displayBDDIngredients();
             }
 
@@ -192,15 +204,15 @@ function newElement() {
     showHint();
 }
 
-function checkInput(inputValue){
+function checkInput(inputValue) {
     var toReturn;
-    if(all_ingredients.map(e => e.toLowerCase()).includes(inputValue.trim().toLowerCase())){
+    if (all_ingredients.map(e => e.toLowerCase()).includes(inputValue.trim().toLowerCase())) {
         //console.log("il est dans la liste");
         toReturn = true;
-        $('#myUL li').each(function() {
-            if($( this ).text().toLowerCase()===inputValue.trim().toLowerCase()+"\u00D7"){
+        $('#myUL li').each(function () {
+            if ($(this).text().toLowerCase() === inputValue.trim().toLowerCase() + "\u00D7") {
                 //console.log("j'ai trouvé le même");
-                toReturn=false;
+                toReturn = false;
                 return false;
             }
         });
