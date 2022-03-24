@@ -11,19 +11,21 @@ $sql = "";
 
 
 if (isset($_POST['like'])) {
-    checkUserReaction($db, $cocktailName);
+    manageLikeUserReaction($db, $cocktailName);
     $sql = "UPDATE cocktail SET `like` = `like` + 1 WHERE cname = '{$cocktailName}';";
 } elseif (isset($_POST['dislike'])) {
+    manageDislikeUserReaction($db, $cocktailName);
     $sql = "UPDATE cocktail SET `dislike` = `dislike` + 1 WHERE cname = '{$cocktailName}';";
 }
 $db->exec($sql);
 
-function checkUserReaction($db, $cocktailName)
+function manageLikeUserReaction($db, $cocktailName)
 {
     $cocktailId = getCocktailId($db, $cocktailName);
     $userId = getUserId($db, $_SESSION['username']);
     $reaction = getUserReaction($db, $cocktailId);
-    if ($reaction == "") {
+    echo "Réaction actuelle : " . $reaction . "\n";
+    if ($reaction == null) {
         // insérer une nouvelle reaction avec 'reaction' = 1
         echo "insertion \n";
         insertUserReaction($db, $cocktailId, $userId, 1);
@@ -34,6 +36,27 @@ function checkUserReaction($db, $cocktailName)
             updateUserReaction($db, $cocktailId, $userId, 0);
         } else {
             updateUserReaction($db, $cocktailId, $userId, 1);
+        }
+    }
+}
+
+function manageDislikeUserReaction($db, $cocktailName)
+{
+    $cocktailId = getCocktailId($db, $cocktailName);
+    $userId = getUserId($db, $_SESSION['username']);
+    $reaction = getUserReaction($db, $cocktailId);
+    echo "Réaction actuelle : " . $reaction . "\n";
+    if ($reaction == null) {
+        // insérer une nouvelle reaction avec 'reaction' = -1
+        echo "insertion \n";
+        insertUserReaction($db, $cocktailId, $userId, -1);
+    } else {
+        // modifier la reaction de l'utilisateur
+        echo "modification \n";
+        if ($reaction == "dislike") {
+            updateUserReaction($db, $cocktailId, $userId, 0);
+        } else {
+            updateUserReaction($db, $cocktailId, $userId, -1);
         }
     }
 }
@@ -71,11 +94,14 @@ function getUserReaction($db, $cocktailId)
 {
     $userId = getUserId($db, $_SESSION['username']);
     $sql = "SELECT `reaction` FROM reactions WHERE id = '{$cocktailId}' and user_id = '{$userId}';";
+    echo "SQL : " . $sql . "\n";
     foreach ($db->query($sql) as $row) {
         if ($row['reaction'] == 1) {
             return "like";
         } elseif ($row['reaction'] == -1) {
             return "dislike";
+        } else {
+            return "none";
         }
     }
 }

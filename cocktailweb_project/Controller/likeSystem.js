@@ -40,7 +40,7 @@ function XMLRequest(likeOrDislike, name) {
     XMLHttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             console.log("Send");
-            //console.log(this.responseText);
+            console.log(this.responseText);
         }
     }
 
