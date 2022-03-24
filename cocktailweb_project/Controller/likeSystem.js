@@ -1,4 +1,4 @@
-function like(){
+function like() {
     let like = document.getElementsByClassName("like");
 
     for (let i = 0; i < like.length; i++) {
@@ -16,7 +16,7 @@ function like(){
     }
 }
 
-function dislike(){
+function dislike() {
     let dislike = document.getElementsByClassName("dislike");
 
     for (let i = 0; i < dislike.length; i++) {
@@ -34,18 +34,19 @@ function dislike(){
     }
 }
 
-function XMLRequest(likeOrDislike, name){
+function XMLRequest(likeOrDislike, name) {
     let XMLHttp = new XMLHttpRequest();
 
     XMLHttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             console.log("Send");
+            //console.log(this.responseText);
         }
     }
 
     let request = "../Model/BDDToLikeSystem.php";
 
-    XMLHttp.open("POST",  request, true);
+    XMLHttp.open("POST", request, true);
     XMLHttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     XMLHttp.send("name=" + name + "&" + likeOrDislike + "=increment");
 }
