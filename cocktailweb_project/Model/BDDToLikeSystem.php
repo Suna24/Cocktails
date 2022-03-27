@@ -3,56 +3,55 @@
 include_once('db.inc.php');
 session_start();
 
-$cocktailName = $_POST['name'];
-
 //Création de la base de données
 $db = new PDO("$server:host=$host;dbname=$base", $user, $pass);
-$sql = "";
+
+$cocktailName = $_POST['name'];
+$cocktailId = getCocktailId($db, $cocktailName);
+$username = $_SESSION['username'];
+$userId = getUserId($db, $username);
+$userReaction = getUserReaction($db, $cocktailId, $userId);
+
+$sqlUpdate = "";
+$sqlSelect = "";
 
 
 if (isset($_POST['like'])) {
-    manageLikeUserReaction($db, $cocktailName);
-    $sql = "UPDATE cocktail SET `like` = `like` + 1 WHERE cname = '{$cocktailName}';";
+    manageLikeUserReaction($db, $cocktailId, $userId, $userReaction);
 } elseif (isset($_POST['dislike'])) {
-    manageDislikeUserReaction($db, $cocktailName);
-    $sql = "UPDATE cocktail SET `dislike` = `dislike` + 1 WHERE cname = '{$cocktailName}';";
+    manageDislikeUserReaction($db, $cocktailId, $userId, $userReaction);
 }
-$db->exec($sql);
 
-function manageLikeUserReaction($db, $cocktailName)
+
+function manageLikeUserReaction($db, $cocktailId, $userId, $reaction)
 {
-    $cocktailId = getCocktailId($db, $cocktailName);
-    $userId = getUserId($db, $_SESSION['username']);
-    $reaction = getUserReaction($db, $cocktailId);
-    echo "Réaction actuelle : " . $reaction . "\n";
+//    echo "Réaction actuelle : " . $reaction . "\n";
     if ($reaction == null) {
         // insérer une nouvelle reaction avec 'reaction' = 1
-        echo "insertion \n";
+//        echo "insertion \n";
         insertUserReaction($db, $cocktailId, $userId, 1);
     } else {
         // modifier la reaction de l'utilisateur
-        echo "modification \n";
+//        echo "modification \n";
         if ($reaction == "like") {
             updateUserReaction($db, $cocktailId, $userId, 0);
         } else {
             updateUserReaction($db, $cocktailId, $userId, 1);
         }
     }
+
 }
 
-function manageDislikeUserReaction($db, $cocktailName)
+function manageDislikeUserReaction($db, $cocktailId, $userId, $reaction)
 {
-    $cocktailId = getCocktailId($db, $cocktailName);
-    $userId = getUserId($db, $_SESSION['username']);
-    $reaction = getUserReaction($db, $cocktailId);
-    echo "Réaction actuelle : " . $reaction . "\n";
+    //echo "Réaction actuelle : " . $reaction . "\n";
     if ($reaction == null) {
         // insérer une nouvelle reaction avec 'reaction' = -1
-        echo "insertion \n";
+//        echo "insertion \n";
         insertUserReaction($db, $cocktailId, $userId, -1);
     } else {
         // modifier la reaction de l'utilisateur
-        echo "modification \n";
+//        echo "modification \n";
         if ($reaction == "dislike") {
             updateUserReaction($db, $cocktailId, $userId, 0);
         } else {
@@ -61,16 +60,11 @@ function manageDislikeUserReaction($db, $cocktailName)
     }
 }
 
-function writeFile($file, $content)
-{
-    $file = fopen($file, "w");
-    fwrite($file, $content);
-    fclose($file);
-}
 
 function getCocktailId($db, $cocktailName)
 {
     $sql = "SELECT `id` FROM cocktail WHERE cname = '{$cocktailName}';";
+    //echo $sql;
     $result = $db->query($sql);
     $result = $result->fetch();
     foreach ($result as $key => $value) {
@@ -90,11 +84,10 @@ function getUserId($db, $userName)
     return $id;
 }
 
-function getUserReaction($db, $cocktailId)
+function getUserReaction($db, $cocktailId, $userId)
 {
-    $userId = getUserId($db, $_SESSION['username']);
     $sql = "SELECT `reaction` FROM reactions WHERE id = '{$cocktailId}' and user_id = '{$userId}';";
-    echo "SQL : " . $sql . "\n";
+//    echo "SQL : " . $sql . "\n";
     foreach ($db->query($sql) as $row) {
         if ($row['reaction'] == 1) {
             return "like";
@@ -109,13 +102,13 @@ function getUserReaction($db, $cocktailId)
 function insertUserReaction($db, $cocktailId, $userId, $reaction)
 {
     $sql = "INSERT INTO `reactions` (`id`, `user_id`, `reaction`) VALUES ('{$cocktailId}', '{$userId}', '{$reaction}');";
-    echo $sql;
+//    echo $sql;
     $db->exec($sql);
 }
 
 function updateUserReaction($db, $cocktailId, $userId, $reaction)
 {
     $sql = "UPDATE `reactions` SET `reaction` = '{$reaction}' WHERE `id` = '{$cocktailId}' and `user_id` = '{$userId}';";
-    echo $sql;
+//    echo $sql;
     $db->exec($sql);
 }

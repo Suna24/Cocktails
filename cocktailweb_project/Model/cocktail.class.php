@@ -1,5 +1,6 @@
 <?php
 include("./quantity.class.php");
+
 class cocktail
 {
     private $quantites;
@@ -19,35 +20,37 @@ class cocktail
         $this->dislike = $dislike;
     }
 
-    public function toHtml(){
+    public function toHtml()
+    {
         $result = "<div class=\"closed container\">
 
   <header class=\"toggle\" onClick=\"display(this)\">
     <div class=\"header\" style=\"background-image: url($this->image)\"></div>
-    <div class=\"title wrapper-button\">".$this->name."
-            <i class=\"far fa-thumbs-up btn like\">".$this->like."</i>
-            <i class=\"far fa-thumbs-down btn dislike\">".$this->dislike."</i>
+    <div class=\"title wrapper-button\">" . $this->name . "
+            <i class=\"far fa-thumbs-up btn like likeSystem\">" . $this->like . "</i>
+            <i class=\"far fa-thumbs-down btn dislike likeSystem\">" . $this->dislike . "</i>
     </div>
   </header>
   
   <article>
     <ul class=\"ingredients\">";
-        foreach($this->quantites as $ingredient)
-        if($ingredient instanceof quantity) {
-            $result .= "<li><div class=\"amount\">".$ingredient->getValue()." ".$ingredient->getUnit()."</div>
-                        <div class=\"ingredient\">".$ingredient->getIngredient()->getName()."</div></li>";
-        } else {
-          echo "Erreur de formatage des données";
-        }
+        foreach ($this->quantites as $ingredient)
+            if ($ingredient instanceof quantity) {
+                $result .= "<li><div class=\"amount\">" . $ingredient->getValue() . " " . $ingredient->getUnit() . "</div>
+                        <div class=\"ingredient\">" . $ingredient->getIngredient()->getName() . "</div></li>";
+            } else {
+                echo "Erreur de formatage des données";
+            }
 
 
-    $result .= "</ul>
+        $result .= "</ul>
     <div class=\"preperation\"> 
-      <div>".$this->recette."</div>
+      <div>" . $this->recette . "</div>
     </div>
   </article>
 </div>";
         return $result;
     }
 }
+
 ?>

@@ -33,8 +33,7 @@ function showHint() {
     XMLHttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             document.getElementById("txtHint").innerHTML = this.responseText;
-            like();
-            dislike();
+            likeSystem();
         }
     };
     if (ing_values.length !== 0 && str.length !== 0) {
