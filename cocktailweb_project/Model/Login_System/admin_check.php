@@ -7,9 +7,9 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && isset($_SE
         echo "admin";
     } else {
         header("location: accueil.html");
-        die();
+        die("Redirection vers accueil.html");
     }
 } else {
     header("location: login-page.php");
-    die();
+    die("Redirection vers login-page.php");
 }

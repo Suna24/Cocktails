@@ -27,8 +27,8 @@ class cocktail
   <header class=\"toggle\" onClick=\"display(this)\">
     <div class=\"header\" style=\"background-image: url($this->image)\"></div>
     <div class=\"title wrapper-button\">" . $this->name . "
-            <i class=\"far fa-thumbs-up btn like likeSystem\">" . $this->like . "</i>
-            <i class=\"far fa-thumbs-down btn dislike likeSystem\">" . $this->dislike . "</i>
+            <i class=\"far fa-thumbs-up btn like\">" . $this->like . "</i>
+            <i class=\"far fa-thumbs-down btn dislike\">" . $this->dislike . "</i>
     </div>
   </header>
   

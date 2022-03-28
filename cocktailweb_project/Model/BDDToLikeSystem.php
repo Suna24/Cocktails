@@ -30,13 +30,19 @@ function manageLikeUserReaction($db, $cocktailId, $userId, $reaction)
         // insérer une nouvelle reaction avec 'reaction' = 1
 //        echo "insertion \n";
         insertUserReaction($db, $cocktailId, $userId, 1);
+        echo "1/0";
     } else {
         // modifier la reaction de l'utilisateur
 //        echo "modification \n";
         if ($reaction == "like") {
             updateUserReaction($db, $cocktailId, $userId, 0);
+            echo "-1/0";
+        } else if ($reaction == "dislike") {
+            updateUserReaction($db, $cocktailId, $userId, 1);
+            echo "1/-1";
         } else {
             updateUserReaction($db, $cocktailId, $userId, 1);
+            echo "1/0";
         }
     }
 
@@ -49,13 +55,19 @@ function manageDislikeUserReaction($db, $cocktailId, $userId, $reaction)
         // insérer une nouvelle reaction avec 'reaction' = -1
 //        echo "insertion \n";
         insertUserReaction($db, $cocktailId, $userId, -1);
+        echo "-1/0";
     } else {
         // modifier la reaction de l'utilisateur
 //        echo "modification \n";
         if ($reaction == "dislike") {
             updateUserReaction($db, $cocktailId, $userId, 0);
+            echo "0/-1";
+        } else if ($reaction == "like") {
+            updateUserReaction($db, $cocktailId, $userId, -1);
+            echo "-1/1";
         } else {
             updateUserReaction($db, $cocktailId, $userId, -1);
+            echo "0/1";
         }
     }
 }
