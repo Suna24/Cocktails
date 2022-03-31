@@ -6,7 +6,7 @@
 ![JavaScript](https://img.shields.io/static/v1?style=for-the-badge&message=JavaScript&color=222222&logo=JavaScript&logoColor=F7DF1E&label=)
 ![Raspberry Pi](https://img.shields.io/static/v1?style=for-the-badge&message=Raspberry+Pi&color=A22846&logo=Raspberry+Pi&logoColor=FFFFFF&label=)
 
-Cocktails est un projet réalisé dans le but de lister différents cocktails en utilisant nos connaissances apprises lors de notre formation en terme de développement front-end mais également de développementt back-end avec un serveur et une base de données. Notre site web est accessible ici --> <a href="http://cocktailproject.ddns.net/">Cocktails</a>
+Cocktails est un projet réalisé dans le but de lister différents cocktails en utilisant nos connaissances apprises lors de notre formation en terme de développement front-end mais également de développementt back-end avec un serveur et une base de données. Notre site web est accessible ici --> <a href="http://cocktailproject.ddns.net/">cocktailproject.ddns.net</a>
 
 <img src="https://user-images.githubusercontent.com/74766923/155623278-0773ab2b-0881-4abd-b651-47f92bdd85ba.png"/>
 
